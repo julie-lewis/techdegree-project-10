@@ -10,9 +10,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 h1 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: #808080;
   font-weight: 300; 
+  text-transform: uppercase;
 }
 h2 {
   font-size: .9em;
@@ -79,49 +80,10 @@ header {
   justify-content: flex-start;
   align-items: center;
   padding: 1.5em;
-  background-color: #7477bf;
   color: #ffffff; 
 }
-header .user-name {
-  display: inline-block;
-  color: #ffffff;
-  font-size: .9em;
-  line-height: 1.2em;
-  font-weight: 300; 
-}
-#notification {
-  font-size: .8em;
-  color: #81c98f;
-  border-radius: 50%;
-  width: 3em;
-  margin-top: -1em;
-  margin-left: -2.2em;
-  z-index: 100; 
-}
-.logo {
-  display: inline-block;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 1em;
-  font-weight: 300; 
-  color: #fff;
-}
-.avatar {
-  width: 40px;
-  height: 40px;
-  margin: .5em;
-  border-radius: 50%; 
-}
-header .icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 .8em 0 1em;
-  padding-right: .7em;
-  border-right: 1px solid #4d4c72;
-  cursor: pointer; 
-}
 .search-bar .search {
-  background: #ffffff url("../../graphics/icons/icon-magnifying.svg") no-repeat right center;
+  background: #ffffff url("...images/icons/icon-magnifying.svg") no-repeat right center;
   background-position: 95%; 
 }
 
