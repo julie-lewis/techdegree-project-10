@@ -16,14 +16,15 @@
       <header>
         <h1>Awesome Startup Employee Directory</h1>
         <div class="search-bar">
-          <input class="search" placeholder="Search">
+          <input class="search" id="user-search" list="matching-users" placeholder="Search" id="user"/>
+          <datalist id="matching-users"></datalist>
         </div>
+
       </header>
 
         <!-- Dashboard area -->
         <main>
-
-
+              <div id="employee"></div>
         </main>
 
     </div> <!-- wrapper -->

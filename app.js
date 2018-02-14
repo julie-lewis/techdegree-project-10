@@ -4,9 +4,6 @@
 //Top Layer
 var body = document.body;
 var modalNumber = 0;
-//Notifications
-var notification = document.getElementById('notification');
-var bell = document.getElementById('bell');
 // Alert Box
 var alertBox = document.getElementById('alert');
 var closeAlert = document.getElementById('close-alert');
@@ -15,8 +12,7 @@ var statFilterButtons = document.getElementsByClassName('stat-filter');
 var trafficChartCanvas = document.getElementById('traffic-line-chart');
 var dailyTrafficChartCanvas = document.getElementById('daily-traffic-bar-chart');
 var mobileUsersChartCanvas = document.getElementById('mobile-users-doughnut-chart');
-var trafficChart = newTrafficChart(['16-22', '23-29', '30-5', '6-12', '13-19', '20-26', '27-3', '4-10', '11-17', '18-24', '25-31'], [700, 1250, 750, 1200, 1700, 1400, 1600, 1200, 1900, 1600, 1900]);
-// MemberSearch
+// employeeSearch
 var userSearch = document.querySelector("input[id='user-search']");
 var userDatalist = document.getElementById('matching-users');
 var searchResult = [];
@@ -31,7 +27,7 @@ var messageNotification = document.createElement('p');
 // ********************************************
 // NOTIFICATIONS & ALERT BOX
 // ********************************************
-//Listens for click on bell icon, creates invisible notification icon and modal messages
+/*Listens for click on bell icon, creates invisible notification icon and modal messages
 bell.addEventListener('click', function(event){
   event.target.removeEventListener('click', event);
   notification.setAttribute('style', 'opacity: 0');
@@ -75,127 +71,16 @@ function modal(notification){
 closeAlert.addEventListener('click', function(){
   alertBox.setAttribute('style', 'display: none');
 });
+*/
 
 // ********************************************
-// TRAFFIC CHARTS
-// ********************************************
-// GENERAL TRAFFIC CHART
-function newTrafficChart(labels, data){
-  new Chart(trafficChartCanvas, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        data: data,
-        backgroundColor: '#e2e3f6',
-        borderColor: '#7477bf',
-        borderWidth: 0.5,
-        pointBackgroundColor: 'white',
-        pointBorderWidth: 1,
-        radius: 5
-      }]
-    },
-    options: {
-      responsive: true,
-      legend: {
-        display: false
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero:true
-          }
-        }]
-      },
-      elements: {
-        line: {
-          tension: 0, 
-        }
-      }
-    }
-  });
-}
-// Adds Traffic filter options (hours/days/weeks/months)
-for (button of statFilterButtons){
-  button.addEventListener('click', function(e){
-    for (button of statFilterButtons){
-      button.classList.remove('active-filter');
-    }
-    this.classList.add('active-filter');
-    var clickedButton = this.innerHTML;
-
-    if (clickedButton === 'Hourly') {
-      var chart = newTrafficChart(['9am', '10am', '11am', '12am', '1pm', '2pm', '3m', '4pm', '5pm'], [750, 400, 650, 750, 1000, 500, 450, 200, 600]);
-    }
-    else if (clickedButton === 'Daily') {
-      console.log('Daily');
-      var chart = newTrafficChart(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], [1400, 1800, 1500, 1800, 700, 600, 1400]);
-    }
-    else if (clickedButton === 'Weekly') {
-      var chart = newTrafficChart(['1', '2', '3', '4', '5'], [1500, 1300, 1200, 1800, 1600]);
-    }
-    else if (clickedButton === 'Monthly') {
-      var chart = newTrafficChart(['January', 'February', 'March', 'April', 'May', 'June'], [1000, 2000, 5000, 3000, 3500, 4000]);
-    }
-  });
-}
-// DAILY TRAFFIC CHART
-var dailyTrafficChart = new Chart(dailyTrafficChartCanvas, {
-  type: 'bar',
-    data: {
-      labels: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-      datasets: [{
-        data: [30, 50, 100, 90, 130, 110, 50],
-        backgroundColor: '#7477bf',
-        borderColor: '7477bf',
-        borderWidth: 1
-      }]
-  },
-  options: {
-    responsive: true,
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero:true
-        }
-      }]
-    }
-  }
-});
-// MOBILE USERS CHART
-var mobileUsersChart = new Chart(mobileUsersChartCanvas, {
-  type: 'doughnut',
-    data: {
-      labels: ['Phones', 'Tablets', 'Desktop'],
-      datasets: [{
-        data: [15, 15., 70],
-        backgroundColor: ['#81c98f', '#74b1bf','#7477bf'],
-        borderWidth: 1
-      }]
-  },
-  options: {
-    responsive: true,
-    legend: {
-      position: 'right',
-      labels: {
-        boxWidth: 10,
-      }
-    },
-    rotation: -0.65 * Math.PI
-  }
-});
-
-// ********************************************
-// MEMBERS
+// employeeS
 // ********************************************
 $.ajax({
   url: 'https://randomuser.me/api/?results=8&inc=name,picture,email,registered',
   dataType: 'json',
   error: function() {
-    console.error("Couldn't get random users from API");
+    console.error("Couldn't get users from API");
   },
   success: function(data) {
     users = data.results;
@@ -206,81 +91,44 @@ $.ajax({
 function firstUp(string){
   return string[0].toUpperCase() + string.substring(1);
 }
-//Generate ransom users from randomuser.me
+//Generate random users from randomuser.me
 function populate(randomUsers){
-  var newMembersDiv = document.getElementById('new-members');
-  var recentActivityDiv = document.getElementById('recent-activity');
-  var membersActivity = [" posted YourApp's SEO Tips", " commented on Facebook's Changes for 2016",
-    " liked the post Facebook's Changes for 2016", " commented on YourApp's SEO Tips"];
-  var recentActivity = ['4 hours ago', '5 hours ago', '5 hours ago', '1 day ago'];
+  var newEmployeeDiv = document.getElementById('employee');
   for (var i = 0; i < randomUsers.length; i++) {
-    var member = randomUsers[i];
-    var memberDiv = document.createElement('div');
-    memberDiv.className = 'member';
-    //INPUT MEMBER AVATAR
+    var employee = randomUsers[i];
+    var employeeDiv = document.createElement('div');
+    employeeDiv.className = 'employee';
+    //INPUT employee AVATAR
     var imageDiv = document.createElement('div');
     var img = document.createElement('img');
-    img.src = member.picture.thumbnail;
-    img.alt = firstUp(member.name.first) + ' ' + firstUp(member.name.last);
+    img.src = employee.picture.thumbnail;
+    img.alt = firstUp(employee.name.first) + ' ' + firstUp(employee.name.last);
     img.className ='avatar';
     imageDiv.appendChild(img);
-    memberDiv.appendChild(imageDiv);
-    // Input 4 New Members
-    if (i <= 3){
+    employeeDiv.appendChild(imageDiv);
+    // Input 16 New employees
+    if (i <= 15){
       var detailsDiv = document.createElement('div');
       //Name
       var name = document.createElement('p');
-      name.className = 'member-name';
-      name.innerHTML = firstUp(member.name.first) + ' ' + firstUp(member.name.last);
+      name.className = 'employee-name';
+      name.innerHTML = firstUp(employee.name.first) + ' ' + firstUp(employee.name.last);
       detailsDiv.appendChild(name);
       // Email
       var email = document.createElement('p');
-      email.innerHTML = member.email;
-      email.className = 'member-email';
+      email.innerHTML = employee.email;
+      email.className = 'employee-email';
       detailsDiv.appendChild(email);
-      memberDiv.appendChild(detailsDiv);
+      employeeDiv.appendChild(detailsDiv);
       // Signup Date
       var dateDiv = document.createElement('div');
-      dateDiv.className = 'flex-item-last member-signup';
+      dateDiv.className = 'flex-item-last employee-signup';
       var signupDate = document.createElement('p');
       var dateOptions = { month: '2-digit', day: '2-digit', year: '2-digit'};
-      signupDate.innerHTML = new Date(member.registered).toLocaleDateString('en-US', dateOptions);
+      signupDate.innerHTML = new Date(employee.registered).toLocaleDateString('en-US', dateOptions);
       dateDiv.appendChild(signupDate);
-      memberDiv.appendChild(dateDiv);
-      // HR between individual members
-      newMembersDiv.appendChild(memberDiv);
-      if (i < 3){
-        var line = document.createElement('hr');
-        newMembersDiv.appendChild(line);
-      }
-    }
-    // Input 4 different "Recent Activity" members
-    else {
-      var activityDiv = document.createElement('div');
-      memberDiv.appendChild(activityDiv);
-      // Activity
-      var activity = document.createElement('p');
-      activity.innerHTML = firstUp(member.name.first) + ' ' + firstUp(member.name.last) + membersActivity[i -4];
-      activityDiv.appendChild(activity);
-      // Time
-      var time = document.createElement('p');
-      time.innerHTML = recentActivity[i -4];
-      time.className = 'activity-time';
-      activityDiv.appendChild(time);
-      // Signup Date
-      var arrowDiv = document.createElement('div');
-      arrowDiv.className = 'flex-item-last';
-      var arrow = document.createElement('p');
-      arrow.innerHTML = '›';
-      arrow.className = 'activity-arrow';
-      arrowDiv.appendChild(arrow);
-      memberDiv.appendChild(arrowDiv);
-      // HR between activity entries
-      recentActivityDiv.appendChild(memberDiv);
-      if (i < 7){
-        var line = document.createElement('hr');
-        recentActivityDiv .appendChild(line);
-      }
+      employeeDiv.appendChild(dateDiv);
+      newEmployeeDiv.appendChild(employeeDiv);
     }
   }
 }
@@ -313,7 +161,7 @@ userSearch.onkeyup = function(){
     }
   }
 };
-// SEND BUTTON
+/*SEND BUTTON
 sendButton.addEventListener('click', function(e){
   var userSearch = document.querySelector("input[id='user-search']");
   var userMessage = document.getElementById('message').value;
@@ -331,34 +179,10 @@ sendButton.addEventListener('click', function(e){
     messageDiv.appendChild(messageNotification);
   }
   else {
-    message = 'Please choose a member and write a message';
+    message = 'Please choose a employee and write a message';
     messageNotification.innerHTML = (message);
     messageDiv.appendChild(messageNotification);
     var validUser = false;
   }
 });
-
-// ********************************************
-// SAVE SETTINGS IN LOCAL STORAGE
-// ********************************************
-// Test for existence of local storage
-if ('localStorage' in window && window['localStorage'] !== null){
-  var emailSwitch = document.getElementById('switch-email');
-  var publicSwitch = document.getElementById('switch-public');
-  var timeZone = document.getElementById('time-zone');
-  var saveButton = document.getElementById('save-settings');
-  // Add event listener to save button and to local storage
-  saveButton.addEventListener('click', function () {
-    localStorage.publicState = publicSwitch.checked;
-    localStorage.emailState = emailSwitch.checked;
-    localStorage.selectedIndex = timeZone.selectedIndex;
-    localStorage.exists = true;
-
-  });
-  // Check saved settings
-  if (localStorage.exists) {
-    publicSwitch.checked = JSON.parse(localStorage.publicState);
-    emailSwitch.checked = JSON.parse(localStorage.emailState);
-    timeZone.selectedIndex = localStorage.selectedIndex;
-  }
-}
+*/

@@ -45,29 +45,11 @@ button {
   font-weight: 700;
 }
 
-/*************
-GRID & LAYOUT
-*************/
-.grid-row {
-  padding: 1em; 
-}
 .flex-item-1 {
   margin-right: auto; 
 }
 .flex-item-last {
   margin-left: auto; 
-}
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-grow: 1; 
-}
-.main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 100%; 
 }
 
 
@@ -129,26 +111,43 @@ ALERT
 
 
 /*************
-MEMBERS
+Employees
 *************/
-.member {
+#employee {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.employee {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center; 
+  flex-basis: 30%;
+  margin: 30px 1.5%;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+
 }
-.member p {
+.employee .avatar {
+  border-radius: 50%;
+  min-width: 50px;
+}
+.employee p {
   font-size: .87em;
   margin: .1em; 
 }
-.member .member-email {
+.employee .employee-email {
   font-size: .75em;
   color: #7477bf; 
 }
-.member .activity-time {
+.employee .activity-time {
   font-size: .75em; 
 }
-.member .activity-arrow {
+.employee .activity-arrow {
   font-size: 2em;
   color: #7477bf; 
 }
@@ -243,7 +242,7 @@ MED-LARGE SCREENS
     float: right;
     margin: 0; 
   }
-  .member {
+  .employee {
     flex-direction: row;
   }
 }x
