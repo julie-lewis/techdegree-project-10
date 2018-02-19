@@ -8,6 +8,7 @@ MAIN STYLES
 }
 body {
   font-family: 'Roboto', sans-serif;
+  background: #f6f6f6;
 }
 h1 {
   font-size: 1.2em;
@@ -15,12 +16,7 @@ h1 {
   font-weight: 300; 
   text-transform: uppercase;
 }
-h2 {
-  font-size: .9em;
-  color: #808080;
-  font-weight: 300;
-  text-transform: uppercase; 
-}
+
 p {
   color: #808080;
   font-size: 16px;
@@ -72,41 +68,6 @@ header {
 /*************
 NAVIGATION
 *************/
-.main-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 1em;
-  background-color: #4d4c72; 
-}
-.main-nav .icon {
-  width: 30px;
-  height: 30px;
-  fill: #7d7ca8; 
-}
-.main-nav .icon:hover {
-  fill: #ffffff; 
-}
-.main-nav .current {
-  fill: #ffffff; 
-}
-
-/*************
-ALERT
-*************/
-#alert {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #7477bf;
-  padding: 0 1em;
-  margin-bottom: 1em; 
-}
-#alert p {
-  color: #ffffff;
-  display: inline-block; 
-}
-
 
 
 
@@ -125,31 +86,34 @@ Employees
   flex-direction: column;
   justify-content: flex-start;
   align-items: center; 
-  flex-basis: 30%;
+  flex-basis: 100%;
   margin: 30px 1.5%;
-  padding: 20px;
+  padding: 15px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  background: #fff;
 
 }
 .employee .avatar {
   border-radius: 50%;
   min-width: 50px;
+  margin-right: 15px;
 }
 .employee p {
-  font-size: .87em;
+  font-size: .8em;
   margin: .1em; 
 }
-.employee .employee-email {
-  font-size: .75em;
-  color: #7477bf; 
+
+.employee .employee-name {
+  font-size: .9em;
+  font-weight: bold;
+  line-height: 1.2em;
+  color: #444;
+  margin-bottom: 5px;
 }
-.employee .activity-time {
-  font-size: .75em; 
-}
-.employee .activity-arrow {
-  font-size: 2em;
-  color: #7477bf; 
+
+.employee-city {
+  text-transform: capitalize;
 }
 
 
@@ -244,8 +208,9 @@ MED-LARGE SCREENS
   }
   .employee {
     flex-direction: row;
+    flex-basis: 30%;
+    flex-grow: 1;
   }
-}x
 
 /*************
 LARGE SCREENS
@@ -277,6 +242,11 @@ LARGE SCREENS
     width: 20em;
     float: right;
     margin: 0; 
+  }
+  .employee {
+    flex-direction: row;
+    flex-basis: 20%;
+    flex-grow: 1;
   }
 }
 

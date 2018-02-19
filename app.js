@@ -74,10 +74,10 @@ closeAlert.addEventListener('click', function(){
 */
 
 // ********************************************
-// employeeS
+// employees
 // ********************************************
 $.ajax({
-  url: 'https://randomuser.me/api/?results=8&inc=name,picture,email,registered',
+  url: 'https://randomuser.me/api/?results=12&inc=name,picture,email,location,dob,phone&nat=us',
   dataType: 'json',
   error: function() {
     console.error("Couldn't get users from API");
@@ -94,6 +94,7 @@ function firstUp(string){
 //Generate random users from randomuser.me
 function populate(randomUsers){
   var newEmployeeDiv = document.getElementById('employee');
+  var overlayDiv = document.getElementById('overlay');
   for (var i = 0; i < randomUsers.length; i++) {
     var employee = randomUsers[i];
     var employeeDiv = document.createElement('div');
@@ -101,13 +102,13 @@ function populate(randomUsers){
     //INPUT employee AVATAR
     var imageDiv = document.createElement('div');
     var img = document.createElement('img');
-    img.src = employee.picture.thumbnail;
+    img.src = employee.picture.medium;
     img.alt = firstUp(employee.name.first) + ' ' + firstUp(employee.name.last);
     img.className ='avatar';
     imageDiv.appendChild(img);
     employeeDiv.appendChild(imageDiv);
     // Input 16 New employees
-    if (i <= 15){
+    if (i <= 11){
       var detailsDiv = document.createElement('div');
       //Name
       var name = document.createElement('p');
@@ -119,16 +120,41 @@ function populate(randomUsers){
       email.innerHTML = employee.email;
       email.className = 'employee-email';
       detailsDiv.appendChild(email);
+      // City
+      var city = document.createElement('p');
+      city.innerHTML = firstUp(employee.location.city);
+      city.className = 'employee-city';
+      detailsDiv.appendChild(city);
       employeeDiv.appendChild(detailsDiv);
-      // Signup Date
-      var dateDiv = document.createElement('div');
-      dateDiv.className = 'flex-item-last employee-signup';
-      var signupDate = document.createElement('p');
-      var dateOptions = { month: '2-digit', day: '2-digit', year: '2-digit'};
-      signupDate.innerHTML = new Date(employee.registered).toLocaleDateString('en-US', dateOptions);
-      dateDiv.appendChild(signupDate);
-      employeeDiv.appendChild(dateDiv);
       newEmployeeDiv.appendChild(employeeDiv);
+      // ADD ITEMS TO OVERLAY
+
+      //X
+      var close = document.createElement('p');
+      close.id ='close';
+      close.innerHTML = '&times;';
+      overlayDiv.appendChild(close);
+      //Image
+      var overlayImg = document.createElement('img');
+      overlayImg.src = employee.picture.large;
+      overlayImg.alt = firstUp(employee.name.first) + ' ' + firstUp(employee.name.last);
+      overlayImg.className ='overlay-image';
+      overlayDiv.appendChild(overlayImg);
+      //Name
+      var overlayName = document.createElement('p');
+      overlayName.className = 'employee-name';
+      overlayName.innerHTML = firstUp(employee.name.first) + ' ' + firstUp(employee.name.last);
+      overlayDiv.appendChild(overlayName);
+      // Email
+      var overlayEmail = document.createElement('p');
+      overlayEmail.innerHTML = employee.email;
+      overlayEmail.className = 'employee-email';
+      overlayDiv.appendChild(overlayEmail);
+      // City
+      var overlayCity = document.createElement('p');
+      overlayCity.innerHTML = firstUp(employee.location.city);
+      overlayCity.className = 'employee-city';
+      overlayDiv.appendChild(overlayCity);
     }
   }
 }
