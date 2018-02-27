@@ -92,8 +92,14 @@ Employees
   border-radius: 5px;
   border: 1px solid #ccc;
   background: #fff;
-
+  box-shadow: 0 0 5px rgba(10, 10, 10, 0.05);
+  transition: box-shadow .5s;
 }
+
+.employee:hover {
+  box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+}
+
 .employee .avatar {
   border-radius: 50%;
   min-width: 50px;
@@ -104,15 +110,15 @@ Employees
   margin: .1em; 
 }
 
-.employee .employee-name {
-  font-size: .9em;
+.employee-name {
+  font-size: 1em;
   font-weight: bold;
   line-height: 1.2em;
   color: #444;
   margin-bottom: 5px;
 }
 
-.employee-city {
+.employee, #overlay {
   text-transform: capitalize;
 }
 
@@ -140,12 +146,10 @@ input[type="search"] {
   box-sizing: border-box; 
 }
 
-
-
 /*************
 MODAL POP UPS
 *************/
-.overlay {
+#overlay-wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -153,41 +157,78 @@ MODAL POP UPS
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(178, 178, 178, 0.5);
-  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
   flex-direction: column;
   justify-content: flex-start;
   padding-top: 2em; 
 }
-.overlay:after {
+
+/*.overlay-wrapper:after {
   opacity: 0.5; 
-}
-.overlay .close-modal {
-    cursor: default;
-    margin: 0; 
-}
-.modal {
+}*/
+
+#overlay {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  width: 30%;
+  min-width: 350px;
   margin: 0 auto 2em;
   padding: 1.5em;
-  background: #ffffff;
-  border: 1px solid #7477bf;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   box-shadow: 0 0 50px rgba(10, 10, 10, 0.5);
   opacity: 1; 
+  text-align: center;
 }
-.modal .close-modal {
+
+#overlay hr {
+  height: 1px;
+  background: #ccc;
+  width: 100%;
+  border: none;
+}
+
+#overlay p {
+  margin: 5px;
+  font-size: 14px;
+}
+
+#overlay .employee-name {
+  font-size: 1em;
+  margin: 10px;
+}
+
+#overlay #close {
+  cursor: pointer;
+  margin: 0; 
   opacity: 0.4;
   transition: all 200ms;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 300;
   text-decoration: none;
-  color: #7477bf; 
+  color: #000; 
   margin-left: 10px;
+  text-align: right;
 }
-.modal .close-modal:hover {
+
+#overlay #close:hover {
   opacity: 1;
+}
+
+.employee .avatar {
+  border-radius: 50%;
+  min-width: 50px;
+  margin-right: 15px;
+}
+
+.overlay-image {
+  max-width: 150px;
+  height: auto;
+  border-radius: 50%;
+  margin: auto;
 }
 
 /*************
