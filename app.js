@@ -103,33 +103,6 @@ function populate(randomUsers){
 
 
 // ********************************************
-// MODAL DISPLAY
-// ********************************************
-// Get the modal
-var modal = document.getElementById('overlay-wrapper');
-// Get the button that opens the modal
-var btn = document.getElementById("employee");
-// Get the <span> element that closes the modal
-var span = document.getElementsByTagName('span');
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-// When the user clicks on <span> (x), close the modal
-span.onclick = function(event) {
-    if (event.target == span) {
-    modal.style.display = "none";
-  }
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-} 
-
-
-// ********************************************
 // USER SEARCH
 // ********************************************
 var userSearch = document.querySelector("input[id='user-search']");
@@ -154,6 +127,35 @@ $(document).ready(function () {
         });
      });
  });
+
+
+// ********************************************
+// MODAL DISPLAY
+// ********************************************
+// Get the modal
+var modal = document.getElementById('overlay-wrapper');
+// Get the button that opens the modal
+var btn = document.getElementById('employee');
+// Get the <span> element that closes the modal
+var span = document.getElementById('close');
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+} 
+// When the user clicks on <span> (x), close the modal
+span.onclick = function(event) {
+    if (event.target == span) {
+    modal.style.display = "none";
+  }
+}
+
+
 
 
 
