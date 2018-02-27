@@ -149,13 +149,24 @@ window.onclick = function(event) {
     }
 } 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function(event) {
-    if (event.target == span) {
+span.onclick = function() {
     modal.style.display = "none";
-  }
 }
 
 
+//Make arrows show previous/next employee
+var previous = document.getElementById('previous');
+var next = document.getElementById('next');
+var current = employee[i];
+var currentModal = document.getElementById('overlay');
 
+// #next on click => hide modal of employee[i], show modal of employee[i] + 1
+previous.onclick = function() {
+    //currentModal.style.display = "none";
+}
 
+// #previous on click => hide modal of employee[i], show modal of employee[i] -1
+next.onclick = function() {
+    //currentModal.style.display = "none";
+}
 
