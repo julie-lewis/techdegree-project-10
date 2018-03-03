@@ -102,9 +102,10 @@ Employees
 
 .employee .avatar {
   border-radius: 50%;
-  min-width: 50px;
+  width: 80px;
   margin-right: 15px;
 }
+
 .employee p {
   font-size: .8em;
   margin: .1em; 
@@ -176,7 +177,7 @@ MODAL POP UPS
   width: 30%;
   min-width: 350px;
   margin: 0 auto 2em;
-  padding: 1.5em;
+  padding: 30px 50px 80px 50px;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -194,11 +195,12 @@ MODAL POP UPS
 
 #overlay p {
   margin: 5px;
-  font-size: 14px;
+  font-size: 1em;
+  line-height: 1.7em;
 }
 
 #overlay .employee-name {
-  font-size: 1em;
+  font-size: 1.2em;
   margin: 10px;
 }
 
@@ -219,13 +221,7 @@ MODAL POP UPS
   opacity: 1;
 }
 
-.employee .avatar {
-  border-radius: 50%;
-  min-width: 50px;
-  margin-right: 15px;
-}
-
-.overlay-image {
+#overlay .avatar {
   max-width: 150px;
   height: auto;
   border-radius: 50%;
