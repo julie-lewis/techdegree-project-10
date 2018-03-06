@@ -42,7 +42,7 @@ $(document).ready(()=>{
   // SET EMPLOYEE DIV CONTENT
   // ********************************************
   function setEmployee(employee) {
-    let employeeDiv = '<div class="employee">';
+    let employeeDiv = '<div class="employee" data-index="'+employee.index+'">';
 
     employeeDiv += '<div>' + employee.img + '</div>';
     employeeDiv += '<div>';
@@ -81,7 +81,8 @@ $(document).ready(()=>{
   $(employeeWrap).on('click', ".employee", e => { // Attach a delegated event handler (employeeWrap)
     overlayWrap.style.display = "block";
     let selected = e.target; // Gets employee wrapper 
-    let selectedIndex = $(selected).index(); //Indentifies index of clicked on node
+    console.log(selected)
+    let selectedIndex = $(selected).data('index'); //Indentifies index of clicked on node
     console.log(selectedIndex)
     setOverlay(employeeInfo[selectedIndex]);
   });
@@ -152,6 +153,7 @@ $(document).ready(()=>{
     url: 'https://randomuser.me/api/?results='+employeeNumber+'&inc=name,picture,email,login,location,dob,cell&nat=us',
     dataType: 'json',
     error: function() {
+      console.log('help')
       console.error("Couldn't get users from API");
     },
     success: function(data) {
