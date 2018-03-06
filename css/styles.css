@@ -170,19 +170,25 @@ MODAL POP UPS
   opacity: 0.5; 
 }*/
 
-#overlay {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+#overlay-content {
   width: 30%;
   min-width: 350px;
-  margin: 0 auto 2em;
-  padding: 30px 50px 80px 50px;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 50px rgba(10, 10, 10, 0.5);
   opacity: 1; 
+  text-align: center;
+  margin: 0 auto 2em;
+}
+
+#overlay  {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 350px;
+  padding: 30px 50px 80px 50px;
   text-align: center;
 }
 

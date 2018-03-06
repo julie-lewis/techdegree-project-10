@@ -44,11 +44,11 @@ $(document).ready(()=>{
   function setEmployee(employee) {
     let employeeDiv = '<div class="employee" data-index="'+employee.index+'">';
 
-    employeeDiv += '<div>' + employee.img + '</div>';
-    employeeDiv += '<div>';
-    employeeDiv += '<p class="employee-name" >' + employee.name + '<p>';
-    employeeDiv += '<p class="employee-email">' + employee.email + '</p>';
-    employeeDiv += '<p class="employee-city">' + employee.city + '</p>';
+    employeeDiv += '<div data-index="'+employee.index+'">' + employee.img + '</div>';
+    employeeDiv += '<div data-index="'+employee.index+'">';
+    employeeDiv += '<p class="employee-name" data-index="'+employee.index+'">' + employee.name + '<p>';
+    employeeDiv += '<p class="employee-email" data-index="'+employee.index+'">' + employee.email + '</p>';
+    employeeDiv += '<p class="employee-city" data-index="'+employee.index+'">' + employee.city + '</p>';
     employeeDiv += '</div></div>';
 
     $("#employee").append(employeeDiv);
@@ -78,9 +78,9 @@ $(document).ready(()=>{
   // ********************************************
   // OPEN MODAL ON CLICK
   // ********************************************
-  $(employeeWrap).on('click', ".employee", e => { // Attach a delegated event handler (employeeWrap)
+  $(employeeWrap).on('click', e => { // Attach a delegated event handler (employeeWrap)
     overlayWrap.style.display = "block";
-    let selected = e.target; // Gets employee wrapper 
+    let selected = e.target; // Gets clicked item
     console.log(selected)
     let selectedIndex = $(selected).data('index'); //Indentifies index of clicked on node
     console.log(selectedIndex)
@@ -92,6 +92,8 @@ $(document).ready(()=>{
   // ********************************************
   // Close modal by clicking X
   $('#overlay').on('click', '#close', e=> { // Attach a delegated event handler (overlay)
+    let clicked = e.target; // Gets employee wrapper 
+    console.log(clicked)
     $('#overlay').text('');
     $("#overlay").css("display", "none");
     $("#overlay-wrapper").css("display", "none");
@@ -153,7 +155,6 @@ $(document).ready(()=>{
     url: 'https://randomuser.me/api/?results='+employeeNumber+'&inc=name,picture,email,login,location,dob,cell&nat=us',
     dataType: 'json',
     error: function() {
-      console.log('help')
       console.error("Couldn't get users from API");
     },
     success: function(data) {
