@@ -94,10 +94,11 @@ Employees
   background: #fff;
   box-shadow: 0 0 5px rgba(10, 10, 10, 0.05);
   transition: box-shadow .5s;
+  cursor: pointer;
 }
 
 .employee:hover {
-  box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+  box-shadow: 0 0 5px rgba(10, 10, 10, 0.7);
 }
 
 .employee .avatar {

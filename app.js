@@ -15,7 +15,6 @@ $(document).ready(()=>{
         let employee = userDetails[i];
         let name = employee.name.first + ' ' + employee.name.last;
         let avatar = employee.picture.large;
-        let avatarImg = '<img class="avatar" src=" ' + avatar + ' " alt='+name+'>';
         let email = employee.email;
         let userName = employee.login.username;
         let cell = employee.cell;
@@ -26,7 +25,7 @@ $(document).ready(()=>{
           
         employeeInfo.push({
           "index" : i,
-          "img": avatarImg,
+          "img": avatar,
           "name": name,
           "email" : email,
           "userName" : userName,
@@ -43,8 +42,7 @@ $(document).ready(()=>{
   // ********************************************
   function setEmployee(employee) {
     let employeeDiv = '<div class="employee" data-index="'+employee.index+'">';
-
-    employeeDiv += '<div data-index="'+employee.index+'">' + employee.img + '</div>';
+    employeeDiv += '<img class="avatar" data-index="' + employee.index + '" src="' + employee.img + ' " alt=" ' + employee.name + ' ">';
     employeeDiv += '<div data-index="'+employee.index+'">';
     employeeDiv += '<p class="employee-name" data-index="'+employee.index+'">' + employee.name + '<p>';
     employeeDiv += '<p class="employee-email" data-index="'+employee.index+'">' + employee.email + '</p>';
@@ -61,7 +59,7 @@ $(document).ready(()=>{
     let overlay = $('#overlay-content');
 
     let overlayDiv = '<div id="overlay"><span id="close" class="close">&times;</span>';
-    overlayDiv += employee.img;
+    overlayDiv += '<img class="avatar" data-index="' + employee.index + '" src="' + employee.img + ' " alt=" ' + employee.name + ' ">';
     overlayDiv += '<p class="employee-name">' + employee.name + '</p>';
     overlayDiv += '<p class="overlay-email">'+ employee.userName + '</p>';
     overlayDiv += '<p class="overlay-city">'+ employee.city + '</p>';
