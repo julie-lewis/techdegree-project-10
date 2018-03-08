@@ -79,23 +79,20 @@ $(document).ready(()=>{
   $(employeeWrap).on('click', e => { // Attach a delegated event handler (employeeWrap)
     overlayWrap.style.display = "block";
     let selected = e.target; // Gets clicked item
-    console.log(selected)
     let selectedIndex = $(selected).data('index'); //Indentifies index of clicked on node
-    console.log(selectedIndex)
     setOverlay(employeeInfo[selectedIndex]);
   });
-
   // ********************************************
   // MODAL CONTROLS
   // ********************************************
   // Close modal by clicking X
-  $('#overlay').on('click', '#close', e=> { // Attach a delegated event handler (overlay)
+  $('#overlay-wrapper').on('click', '#close', e=> { // Attach a delegated event handler (overlay)
     let clicked = e.target; // Gets employee wrapper 
-    console.log(clicked)
     $('#overlay').text('');
     $("#overlay").css("display", "none");
     $("#overlay-wrapper").css("display", "none");
-  });    
+  }); 
+
   // Close modal by clicking outside
   window.onclick = function(event) {
     if (event.target == overlayWrap) {
@@ -104,47 +101,43 @@ $(document).ready(()=>{
       $("#overlay-wrapper").css("display", "none");
     }    
   };
+
   //Make arrows navigate to/show previous/next employee
   const previous = document.getElementById('previous');
   const next = document.getElementById('next');
   //let current = employee.index; 
   // get index value of current modal
   let currentModal = document.getElementById('overlay');
-  // #next on click => hide modal of employee[i], show modal of employee[i] + 1
   previous.onclick = function() {
-      //currentModal.style.display = "none";
+    //show modal of employee[i] - 1
+    //currentModal.style.display = "none";
+    console.log(employee[i]);
   }
-  // #previous on click => hide modal of employee[i], show modal of employee[i] -1
   next.onclick = function() {
-      //currentModal.style.display = "none";
+    //show modal of employee[i] - 1
+    //currentModal.style.display = "none";
+    console.log(employee[i]);
   }
+
 
   // ********************************************
   // USER SEARCH
   // ********************************************
-  var userSearch = document.querySelector("input[id='user-search']");
-
-  $(document).ready(function () {
-
-      $(userSearch).keyup(function(){
-
-          // Retrieve the input field text 
-          var filter = $(this).val();
-
-          // Loop through the employee div 
-          $(".avatar").each(function(){
-              var employeeName = $(this).attr('alt').search(new RegExp(filter, "i"));
-              if (employeeName < 0) {  
-                  $(this).parent().parent().fadeOut();
-
-              // Show the div item if the phrase matches 
-              } else {
-                  $(this).parent().parent().show();
-              }
-          });
-       });
-   });
-
+  const userSearch = document.querySelector("input[id='user-search']");
+  $(userSearch).keyup(function(){
+    // Retrieve the input field text 
+    var filter = $(this).val();
+    // Loop through the employee div 
+    $(".avatar").each(function(){
+        var employeeName = $(this).attr('alt').search(new RegExp(filter, "i"));
+        if (employeeName < 0) {  
+            $(this).parent().fadeOut();
+        // Show the div item if the phrase matches 
+        } else {
+            $(this).parent().show();
+        }
+    });
+  });
 
   // ********************************************
   // AJAX REQUEST
