@@ -7,6 +7,7 @@ $(document).ready(()=>{
   const close = document.getElementById('close');
   const employeeNumber = 12;
   let employeeInfo = [];
+  let employIndex = 0;
   // ********************************************
   // EMPLOYEE INFO
   // ********************************************
@@ -50,6 +51,9 @@ $(document).ready(()=>{
     employeeDiv += '</div></div>';
 
     $("#employee").append(employeeDiv);
+    // let employIndex = employee.index;
+    // console.log(employIndex);
+    // return employIndex;
   }
 
   // ********************************************
@@ -81,6 +85,7 @@ $(document).ready(()=>{
     let selected = e.target; // Gets clicked item
     let selectedIndex = $(selected).data('index'); //Indentifies index of clicked on node
     setOverlay(employeeInfo[selectedIndex]);
+    console.log(selectedIndex);
   });
   // ********************************************
   // MODAL CONTROLS
