@@ -7,7 +7,7 @@ $(document).ready(()=>{
   const close = document.getElementById('close');
   const employeeNumber = 12;
   let employeeInfo = [];
-  let employIndex = 0;
+  let employeeIndex = 0;
   // ********************************************
   // EMPLOYEE INFO
   // ********************************************
@@ -85,7 +85,9 @@ $(document).ready(()=>{
     let selected = e.target; // Gets clicked item
     let selectedIndex = $(selected).data('index'); //Indentifies index of clicked on node
     setOverlay(employeeInfo[selectedIndex]);
-    console.log(selectedIndex);
+    let employeeIndex = selectedIndex;
+    console.log(employeeIndex);
+    return employeeIndex;
   });
   // ********************************************
   // MODAL CONTROLS
@@ -114,14 +116,16 @@ $(document).ready(()=>{
   // get index value of current modal
   let currentModal = document.getElementById('overlay');
   previous.onclick = function() {
+    console.log(employeeIndex);
     //show modal of employee[i] - 1
     //currentModal.style.display = "none";
-    console.log(employee[i]);
+    //console.log(employee[i]);
   }
   next.onclick = function() {
+    console.log(employeeIndex);
     //show modal of employee[i] - 1
     //currentModal.style.display = "none";
-    console.log(employee[i]);
+    //console.log(employee[i]);
   }
 
 
@@ -143,6 +147,7 @@ $(document).ready(()=>{
         }
     });
   });
+
 
   // ********************************************
   // AJAX REQUEST
