@@ -43,6 +43,7 @@ $(document).ready(()=>{
   // ********************************************
   function setEmployee(employee) {
     let employeeDiv = '<div class="employee" data-index="'+employee.index+'">';
+
     employeeDiv += '<img class="avatar" data-index="' + employee.index + '" src="' + employee.img + ' " alt=" ' + employee.name + ' ">';
     employeeDiv += '<div data-index="'+employee.index+'">';
     employeeDiv += '<p class="employee-name" data-index="'+employee.index+'">' + employee.name + '<p>';
@@ -51,9 +52,7 @@ $(document).ready(()=>{
     employeeDiv += '</div></div>';
 
     $("#employee").append(employeeDiv);
-    // let employIndex = employee.index;
-    // console.log(employIndex);
-    // return employIndex;
+
   }
 
   // ********************************************
@@ -80,27 +79,24 @@ $(document).ready(()=>{
   // ********************************************
   // OPEN MODAL ON CLICK
   // ********************************************
-  $(employeeWrap).on('click', e => { // Attach a delegated event handler (employeeWrap)
+  $(employeeWrap).on('click', '.employee', e => { // Delegated event handler so that margins don't open undefined
     overlayWrap.style.display = "block";
     let selected = e.target; // Gets clicked item
     let selectedIndex = $(selected).data('index'); //Indentifies index of clicked on node
     setOverlay(employeeInfo[selectedIndex]);
-    let employeeIndex = selectedIndex;
-    console.log(employeeIndex);
-    return employeeIndex;
   });
   // ********************************************
   // MODAL CONTROLS
   // ********************************************
   // Close modal by clicking X
-  $('#overlay-wrapper').on('click', '#close', e=> { // Attach a delegated event handler (overlay)
+  $('#overlay-wrapper').on('click', '#close', e=> { // Delegated event handler to existing DOM element
     let clicked = e.target; // Gets employee wrapper 
     $('#overlay').text('');
     $("#overlay").css("display", "none");
     $("#overlay-wrapper").css("display", "none");
   }); 
 
-  // Close modal by clicking outside
+  // Close modal by clicking outside of modal
   window.onclick = function(event) {
     if (event.target == overlayWrap) {
       $('#overlay').text('');
@@ -112,22 +108,28 @@ $(document).ready(()=>{
   //Make arrows navigate to/show previous/next employee
   const previous = document.getElementById('previous');
   const next = document.getElementById('next');
-  //let current = employee.index; 
-  // get index value of current modal
-  let currentModal = document.getElementById('overlay');
   previous.onclick = function() {
-    console.log(employeeIndex);
-    //show modal of employee[i] - 1
-    //currentModal.style.display = "none";
-    //console.log(employee[i]);
+    let currentIndex = document.getElementById('close').nextSibling.getAttribute('data-index');
+    let previousEmployee = Number(currentIndex) - 1;
+    let lastEmployee = Number(currentIndex) + 11;
+    if (currentIndex == 0) {
+      setOverlay(employeeInfo[ lastEmployee ]);
+    }
+    else { 
+      setOverlay(employeeInfo[ previousEmployee ]);
+    }
   }
   next.onclick = function() {
-    console.log(employeeIndex);
-    //show modal of employee[i] - 1
-    //currentModal.style.display = "none";
-    //console.log(employee[i]);
+    let currentIndex = document.getElementById('close').nextSibling.getAttribute('data-index');
+    let nextEmployee = Number(currentIndex) + 1;
+    let firstEmployee = Number(currentIndex) - 11;
+    if (currentIndex > 10) {
+      setOverlay(employeeInfo[ firstEmployee ]);
+    }
+    else { 
+      setOverlay(employeeInfo[ nextEmployee ]);
+    }
   }
-
 
   // ********************************************
   // USER SEARCH
