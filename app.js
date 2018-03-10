@@ -115,7 +115,7 @@ $(document).ready(()=>{
     else { 
       setOverlay(employeeInfo[ previousEmployee ]);
     }
-  }
+  };
   next.onclick = function() {
     let currentIndex = document.getElementById('close').nextSibling.getAttribute('data-index');
     let nextEmployee = Number(currentIndex) + 1;
@@ -126,7 +126,7 @@ $(document).ready(()=>{
     else { 
       setOverlay(employeeInfo[ nextEmployee ]);
     }
-  }
+  };
 
   // ********************************************
   // USER SEARCH
