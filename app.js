@@ -4,10 +4,8 @@ $(document).ready(()=>{
   // ********************************************
   const employeeWrap = document.getElementById('employee');
   const overlayWrap = document.getElementById('overlay-wrapper');
-  const close = document.getElementById('close');
   const employeeNumber = 12;
   let employeeInfo = [];
-  let employeeIndex = 0;
   // ********************************************
   // EMPLOYEE INFO
   // ********************************************
@@ -90,7 +88,6 @@ $(document).ready(()=>{
   // ********************************************
   // Close modal by clicking X
   $('#overlay-wrapper').on('click', '#close', e=> { // Delegated event handler to existing DOM element
-    let clicked = e.target; // Gets employee wrapper 
     $('#overlay').text('');
     $("#overlay").css("display", "none");
     $("#overlay-wrapper").css("display", "none");
