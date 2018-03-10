@@ -17,7 +17,7 @@ $(document).ready(()=>{
         let email = employee.email;
         let userName = employee.login.username;
         let cell = employee.cell;
-        let address = employee.location.street + ', ' + employee.location.state + ' ' + employee.location.postcode;
+        let address = employee.location.street + ', ' + employee.location.city + ', ' + employee.location.state + ' ' + employee.location.postcode;
         let city = employee.location.city;
         let dateOptions = { day: '2-digit', month: '2-digit', year: '2-digit'};
         let bday = 'Birthday: ' + new Date(employee.dob).toLocaleDateString('en-US', dateOptions);
@@ -42,10 +42,10 @@ $(document).ready(()=>{
   function setEmployee(employee) {
     let employeeDiv = '<div class="employee" data-index="'+employee.index+'">';
 
-    employeeDiv += '<img class="avatar" data-index="' + employee.index + '" src="' + employee.img + ' " alt=" ' + employee.name + ' ">';
+    employeeDiv += '<img class="avatar" data-index="' + employee.index + '" src="' + employee.img + ' " alt=" ' + employee.name + ' ' + employee.userName + ' ">';
     employeeDiv += '<div data-index="'+employee.index+'">';
     employeeDiv += '<p class="employee-name" data-index="'+employee.index+'">' + employee.name + '<p>';
-    employeeDiv += '<p class="employee-email" data-index="'+employee.index+'">' + employee.email + '</p>';
+    employeeDiv += '<p class="employee-email" data-index="'+employee.index+'">' + employee.userName + '</p>';
     employeeDiv += '<p class="employee-city" data-index="'+employee.index+'">' + employee.city + '</p>';
     employeeDiv += '</div></div>';
 
@@ -60,14 +60,14 @@ $(document).ready(()=>{
     let overlay = $('#overlay-content');
 
     let overlayDiv = '<div id="overlay"><span id="close" class="close">&times;</span>';
-    overlayDiv += '<img class="avatar" data-index="' + employee.index + '" src="' + employee.img + ' " alt=" ' + employee.name + ' ">';
+    overlayDiv += '<img class="avatar" data-index="' + employee.index + '" src="' + employee.img + ' " alt=" ' + employee.name + ' ' + employee.userName + ' ">';
     overlayDiv += '<p class="employee-name">' + employee.name + '</p>';
     overlayDiv += '<p class="overlay-email">'+ employee.userName + '</p>';
-    overlayDiv += '<p class="overlay-city">'+ employee.city + '</p>';
+    overlayDiv += '<p class="overlay-email">'+ employee.email + '</p>';
     overlayDiv += '<hr class="hr">';
     overlayDiv += '<p class="overlay-cell">'+ employee.cell + '</p>';
     overlayDiv += '<p class="overlay-address">'+ employee.address+ '</p>';
-    overlayDiv += '<p class="overlay-dob">Birthday: '+ employee.bday + '</p>';
+    overlayDiv += '<p class="overlay-dob">'+ employee.bday + '</p>';
     overlayDiv += '</div>';
 
     overlay.html(overlayDiv);
